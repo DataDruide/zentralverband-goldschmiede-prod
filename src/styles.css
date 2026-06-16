@@ -1,0 +1,320 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Zentralverband der Deutschen Goldschmiede – Design System
+ * Behutsam modernisiert: warmes Creme, gedämpftes Gold, tiefes Anthrazit.
+ */
+
+@theme inline {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-cream: var(--cream);
+  --color-parchment: var(--parchment);
+  --color-ink: var(--ink);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Warm cream tones – inspired by the original site palette */
+  --cream: oklch(0.985 0.012 85);
+  --parchment: oklch(0.955 0.022 88);
+  --gold: oklch(0.72 0.13 80);
+  --gold-soft: oklch(0.88 0.07 85);
+  --ink: oklch(0.22 0.015 60);
+
+  /* 2026 jewel accents – moderne Sektions-Abgrenzung */
+  --emerald: oklch(0.52 0.11 165);           /* tiefes Smaragd */
+  --emerald-soft: oklch(0.92 0.04 165);
+  --plum: oklch(0.38 0.08 340);              /* tiefes Pflaume */
+  --plum-soft: oklch(0.93 0.025 340);
+  --ember: oklch(0.62 0.16 45);              /* warmes Kupfer */
+  --ember-soft: oklch(0.94 0.04 60);
+  --ice: oklch(0.97 0.012 230);              /* kühles Hellblau */
+
+  --gradient-hero: linear-gradient(135deg,
+    color-mix(in oklch, var(--gold) 18%, var(--cream)) 0%,
+    var(--cream) 45%,
+    color-mix(in oklch, var(--ember) 12%, var(--cream)) 100%);
+  --gradient-band: linear-gradient(180deg,
+    color-mix(in oklch, var(--emerald) 8%, var(--cream)) 0%,
+    color-mix(in oklch, var(--emerald) 14%, var(--cream)) 100%);
+  --shadow-soft: 0 1px 2px oklch(0.2 0.02 60 / 0.04), 0 8px 24px -12px oklch(0.2 0.02 60 / 0.18);
+  --shadow-jewel: 0 30px 80px -40px color-mix(in oklch, var(--gold) 60%, transparent);
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--ink);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--cream);
+  --secondary: var(--parchment);
+  --secondary-foreground: var(--ink);
+  --muted: var(--parchment);
+  --muted-foreground: oklch(0.45 0.02 60);
+  --accent: var(--gold);
+  --accent-foreground: oklch(0.98 0.01 85);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.9 0.02 85);
+  --input: oklch(0.92 0.018 85);
+  --ring: var(--gold);
+}
+
+@theme inline {
+  --color-emerald-jewel: var(--emerald);
+  --color-emerald-soft: var(--emerald-soft);
+  --color-plum: var(--plum);
+  --color-plum-soft: var(--plum-soft);
+  --color-ember: var(--ember);
+  --color-ember-soft: var(--ember-soft);
+  --color-ice: var(--ice);
+}
+
+.dark {
+  --background: oklch(0.18 0.012 60);
+  --foreground: var(--cream);
+  --card: oklch(0.22 0.015 60);
+  --card-foreground: var(--cream);
+  --popover: oklch(0.22 0.015 60);
+  --popover-foreground: var(--cream);
+  --primary: var(--gold);
+  --primary-foreground: oklch(0.18 0.012 60);
+  --secondary: oklch(0.26 0.015 60);
+  --secondary-foreground: var(--cream);
+  --muted: oklch(0.26 0.015 60);
+  --muted-foreground: oklch(0.7 0.02 60);
+  --accent: var(--gold);
+  --accent-foreground: oklch(0.18 0.012 60);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: var(--gold);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: calc(16px * var(--user-font-scale, 1));
+  }
+
+  /* High-Contrast Modus für Barrierefreiheit */
+  html.high-contrast {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.12 0 0);
+    --muted-foreground: oklch(0.25 0 0);
+    --border: oklch(0.4 0 0);
+    --accent: oklch(0.45 0.18 50);
+    --primary: oklch(0.12 0 0);
+  }
+  html.high-contrast a,
+  html.high-contrast button { text-decoration-thickness: 2px; }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  *:focus { outline: none; }
+  *:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  a:focus-visible,
+  button:focus-visible { outline-offset: 3px; }
+
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 0;
+    border-color: var(--gold);
+  }
+
+  ::selection {
+    background: color-mix(in oklch, var(--gold) 35%, transparent);
+    color: var(--ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .container-prose {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-prose { padding-inline: 1.5rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .container-prose { padding-inline: 2rem; }
+  }
+
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  .btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1;
+    min-height: 2.75rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 640px) {
+    .btn-base { padding: 0.8125rem 1.5rem; }
+  }
+
+  .hairline {
+    border-block: 1px solid color-mix(in oklch, var(--gold) 35%, transparent);
+  }
+
+  .gold-underline {
+    background-image: linear-gradient(transparent 92%, var(--gold) 92%);
+    background-size: 100% 100%;
+  }
+
+  /* Section accent treatments – moderne 2026 Abgrenzung */
+  .bg-hero-grad { background: var(--gradient-hero); }
+  .bg-emerald-band { background: var(--gradient-band); }
+  .bg-ink-band {
+    background: linear-gradient(135deg, var(--ink) 0%, oklch(0.28 0.02 60) 100%);
+    color: var(--cream);
+  }
+  .bg-ember-soft { background-color: var(--ember-soft); }
+  .bg-plum-soft { background-color: var(--plum-soft); }
+  .bg-ice { background-color: var(--ice); }
+
+  .section-rule {
+    position: relative;
+  }
+  .section-rule::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 64px; height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--gold), var(--ember));
+  }
+
+  .accent-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 999px;
+    background: var(--ember);
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+
+  .card-jewel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .card-jewel:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklch, var(--gold) 50%, var(--border));
+    box-shadow: var(--shadow-jewel);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 999px;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: color-mix(in oklch, var(--gold) 14%, transparent);
+    color: color-mix(in oklch, var(--ink) 80%, var(--gold));
+    border: 1px solid color-mix(in oklch, var(--gold) 30%, transparent);
+  }
+  .chip-emerald {
+    background: color-mix(in oklch, var(--emerald) 12%, transparent);
+    color: var(--emerald);
+    border-color: color-mix(in oklch, var(--emerald) 35%, transparent);
+  }
+  .chip-ember {
+    background: color-mix(in oklch, var(--ember) 14%, transparent);
+    color: var(--ember);
+    border-color: color-mix(in oklch, var(--ember) 35%, transparent);
+  }
+  .chip-plum {
+    background: color-mix(in oklch, var(--plum) 12%, transparent);
+    color: var(--plum);
+    border-color: color-mix(in oklch, var(--plum) 35%, transparent);
+  }
+}

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /mitgliederbereich
+Disallow: /login
+Disallow: /api/
+
+Sitemap: https://zentralverband-goldschmiede.lovable.app/sitemap.xml
